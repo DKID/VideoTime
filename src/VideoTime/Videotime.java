@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 public class Videotime {
 
 	private static long time;
-
 	private static String count = "";
 
 	public static void main(String[] args) throws IOException {
@@ -22,7 +21,6 @@ public class Videotime {
 		} else {
 			System.out.println("路径有问题");
 		}
-
 		System.out
 				.println("所有视频的总长度为:" + time / 3600000 + "时" + (time % 3600000)
 						/ 60000 + "分" + (time % 60000) / 1000 + "秒！");
@@ -38,9 +36,7 @@ public class Videotime {
 				try {
 					listAllFile(fs[i]);
 				} catch (Exception e) {
-
 				}
-
 			}
 			count = truncateHeadString(count, 4);
 		} else
@@ -49,7 +45,8 @@ public class Videotime {
 
 	public static void findVideo(File f) {
 		String name = f.toString();
-		if (name.endsWith(".mp4") || name.endsWith(".avi")) {
+		if (name.endsWith(".mp4") | name.endsWith(".avi")
+				| name.endsWith(".rmvb") | name.endsWith(".rm")) {
 			System.out.println(count + f.getName());
 			countViewTime(f);
 		}
@@ -69,17 +66,17 @@ public class Videotime {
 		}
 	}
 
+	// 去除字符串开头几位
 	public static String truncateHeadString(String origin, int count) {
 		if (origin == null || origin.length() < count) {
 			return null;
 		}
-
 		char[] arr = origin.toCharArray();
 		char[] ret = new char[arr.length - count];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = arr[i + count];
 		}
-
 		return String.copyValueOf(ret);
 	}
+
 }
